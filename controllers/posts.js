@@ -91,6 +91,7 @@ module.exports = {
     })
   },
   insert: function(req, res) {
+    res.setHeader('Access-Control-Allow-Origin', '*')
     var uuid = UUID();
     var form = new multiparty.Form();
     form.parse(req, function(_err, fields, files) {
