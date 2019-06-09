@@ -26,7 +26,27 @@ webpush.setVapidDetails(
   keys.privateVapidKey,
 );
 
-app.use(cors());
+const whitelist = ['http://localhost:3000', 'https://super-insta-clone.herokuapp.com/']
+const corsOptions = {
+  origin: function(origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true)
+    } else {
+      callback(new Error('Not allowed by CORS'))
+    }
+  }
+}
+
+app.use(cors(corsOptions));
+app.use(function(req, res, next) {
+  // Instead of "*" you should enable only specific origins
+  res.header('Access-Control-Allow-Origin', '*');
+  // Supported HTTP verbs
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+  // Other custom headers
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  next();
+});
 // Creating new post have a special treatment
 // because no need to parse json
 app.post('/posts', postsController.insert)
