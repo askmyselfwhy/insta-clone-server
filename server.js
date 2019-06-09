@@ -18,6 +18,7 @@ var subscriptions = require('./routes/subscriptions');
 
 const privateKey = `somePrivatKey`;
 const algorithm = 'HS256';
+const port = process.env.PORT || 3012;
 
 webpush.setVapidDetails(
   'mailto:test@test.com',
@@ -87,11 +88,11 @@ app.use('/users', users);
 app.use('/posts', posts);
 app.use('/subscribe', subscriptions);
 
-db.connect('mongodb://localhost:27017/myapi', function(err) {
+db.connect(function(err) {
   if (err) {
     return console.log(err);
   }
-  app.listen(3012, function() {
+  app.listen(port, function() {
     console.log('API app started');
   })
 })
