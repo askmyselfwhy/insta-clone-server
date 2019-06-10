@@ -51,9 +51,9 @@ app.use(function(req, res, next) {
 */
 // Creating new post have a special treatment
 // because no need to parse json
-app.post('/posts', postsController.insert)
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.post('/posts', postsController.insert)
 app.post('/login', function(req, res) {
   const { password, username } = req.body;
   UsersModel
