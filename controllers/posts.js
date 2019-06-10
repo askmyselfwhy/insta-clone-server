@@ -141,7 +141,8 @@ module.exports = {
                       comments: 0
                     }
                   }, function(createPostErr, postDoc) {
-                    if (createPostErr) res.sendStatus(503)
+                    if (createPostErr) res.sendStatus(504)
+                    /*
                     // Generate comments (just for testing purpose)
                     commentGenerator.generateComments(postDoc._id, ObjectID(postDoc.user_id));
                     // Notify all subscribed users about new post
@@ -167,6 +168,7 @@ module.exports = {
                           .catch((err) => console.log(err))
                       });
                     })
+                    */
                     return res.json({ id: fields.id[0] })
                   })
                 })
