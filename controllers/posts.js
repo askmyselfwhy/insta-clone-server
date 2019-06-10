@@ -140,8 +140,8 @@ module.exports = {
                       likes: 0,
                       comments: 0
                     }
-                  })
-                  .then(postDoc => {
+                  }, function(createPostErr, postDoc) {
+                    if (createPostErr) res.sendStatus(503)
                     // Generate comments (just for testing purpose)
                     commentGenerator.generateComments(postDoc._id, ObjectID(postDoc.user_id));
                     // Notify all subscribed users about new post
@@ -169,7 +169,6 @@ module.exports = {
                     })
                     return res.json({ id: fields.id[0] })
                   })
-                  .catch(_err => res.sendStatus(501))
                 })
                 .catch(_err => res.sendStatus(502))
               } else {
