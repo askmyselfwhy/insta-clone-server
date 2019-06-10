@@ -26,6 +26,7 @@ webpush.setVapidDetails(
   keys.privateVapidKey,
 );
 
+/*
 const whitelist = ['http://localhost:3000', 'https://super-insta-clone.herokuapp.com']
 const corsOptions = {
   origin: function(origin, callback) {
@@ -36,8 +37,9 @@ const corsOptions = {
     }
   }
 }
+*/
 
-app.use(cors(corsOptions));
+app.use(cors());
 /*
 app.use(function(req, res, next) {
   // Instead of "*" you should enable only specific origins
@@ -53,7 +55,6 @@ app.use(function(req, res, next) {
 // because no need to parse json
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.post('/posts', postsController.insert)
 app.post('/login', function(req, res) {
   const { password, username } = req.body;
   UsersModel
