@@ -91,7 +91,6 @@ module.exports = {
     })
   },
   insert: function(req, res) {
-    res.setHeader('Access-Control-Allow-Origin', '*')
     var uuid = UUID();
     var form = new multiparty.Form();
     form.parse(req, function(_err, fields, files) {
@@ -170,9 +169,9 @@ module.exports = {
                     })
                     return res.json({ id: fields.id[0] })
                   })
-                  .catch(_err => res.sendStatus(500))
+                  .catch(_err => res.sendStatus(501))
                 })
-                .catch(_err => res.sendStatus(500))
+                .catch(_err => res.sendStatus(502))
               } else {
                 console.log(err);
               }
