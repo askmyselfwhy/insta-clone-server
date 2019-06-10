@@ -93,6 +93,7 @@ module.exports = {
   insert: function(req, res) {
     var uuid = UUID();
     var form = new multiparty.Form();
+                        /*
     form.parse(req, function(_err, fields, files) {
       Object.keys(files).forEach(function(name) {
         const file = files[name];
@@ -142,7 +143,7 @@ module.exports = {
                     }
                   }, function(createPostErr, postDoc) {
                     if (createPostErr) res.sendStatus(504)
-                    /*
+
                     // Generate comments (just for testing purpose)
                     commentGenerator.generateComments(postDoc._id, ObjectID(postDoc.user_id));
                     // Notify all subscribed users about new post
@@ -168,7 +169,7 @@ module.exports = {
                           .catch((err) => console.log(err))
                       });
                     })
-                    */
+
                     return res.json({ id: fields.id[0] })
                   })
                 })
@@ -182,6 +183,7 @@ module.exports = {
         console.log('got file named ' + name);
       });
     });
+                        */
   },
   delete: function(req, res) {
     const _id = req.params.id;
