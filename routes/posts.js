@@ -4,7 +4,7 @@ var postsController = require('../controllers/posts')
 
 // Return list of posts
 router.get('/', postsController.all)
-
+router.post('/', postsController.insert)
 // Return post by id
 router.get('/:id', postsController.findById)
 // Change post info
